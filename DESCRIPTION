@@ -1,0 +1,13 @@
+Package: RCAR
+Type: Package
+Title: Lasso Regularized CLASS-ASSOCIATION RULES BASED CLASSIFIER
+Version: 0.1.0
+Author: AZMI MOHAMED AND ABDELAZIZ BERRADO
+Maintainer: The package maintainer <mohamed.azmi@um5s.net.ma>
+Description: Procedures for fitting classifier based on Lasso regularized class-association rules for binary classification, the fuctions allow deep analysis of the model by exliciting the rules as well as their characteristics, the functions allow also to explicite the structure of the dependency between the rules in the model throught the metarules
+Imports: glmnet
+Depends: arules
+License: MIT?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
