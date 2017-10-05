@@ -15,8 +15,9 @@
 #'@param lambd: A user supplied value, or sequence of values, of the penalty terme. If it is not provided, the programme generate automatically a sequence ranging from the value of lambda such that all the coefficients are zero down to value of lambda whose the deviance do not change from lambda to the next.
 #'@return The function fits Lasso regularized logistic model with binary response on the rule space.
 #'@examples
+#'
 #'data(vote)
-
+#'
 #'rcar.fit<-rcar(vote,y.rank=1, s=0.2, c=0.8)
 #'
 #'100 RCAR models are fit on the rule space given by the 5084 rules mined using Apriori with minimum support and

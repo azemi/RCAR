@@ -30,6 +30,6 @@ vote.cv<-cv.rcar(vote, y.rank = 1, s=0.2, c=0.8)
 
 coef.rcar(vote.cv, lambd=0.169)
 coef.rcar(vote.rcar)
-If the value of lambda is not specified, the programme use the value of lambda corresponding the minimum mean cross-validated error.
+If the value of lambda is not specified, the programme uses the value of lambda corresponding the minimum mean cross-validated error.
 
 }

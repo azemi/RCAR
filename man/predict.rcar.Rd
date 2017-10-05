@@ -4,42 +4,44 @@
 \alias{predict.rcar}
 \title{make classification from a "rcar" object.}
 \usage{
-predict.rcar(object, newdata)
+predict.rcar(object, newdata, lambd)
 }
 \arguments{
-\item{object:}{Fitted "rcar" model object..}
+\item{object:}{Fitted "rcar" or "cv.rcar" object.}
 
-\item{y.rank:}{Matrix of new values for x at which classification is to be made.}
+\item{newdata:}{Matrix of new values for x at which predictions are to be made. Must be a matrix; can be sparse as in Matrix package.}
 }
 \value{
-The predicted classes using "rcar" object.
+The predicted classes using RCAR approach.
 }
 \description{
-This function gives the predicted class of a new data records from a fitted "rcar" object.
+This function gives the predicted class of a new data records from a "rcar" or "cv.rcar" object at a single value of lambda.
 }
 \examples{
 
-nrow(vote)
+Vote<-na.omit(Vote)
+nrow(Vote)
 set.seed(1)
 train<-sample(232,202)
 vote.train<- vote[train,]
 vote.test <-vote[-train,]
 
 Select a random subset of 202 observations out of the original 232 observations in vote dataset,
-the selected sample will be used to train the "rcar" oject, while the rest will be used to estimate the test error.
+the selected sample will be used to train the "rcar" and "cv.rcar" ojects, while the rest will be used to estimate the test error.
 
 
 vote.cv<-cv.rcar(vote.train, y.rank = 1, s=0.2, c=0.8)
 best.lambda<-vote.cv$Accurate.Model$Best.lambda
 
-Use 10-folds-cross-validation to get lambda that gives the minimum mean cross-validated error.
+vote.pred<-predict.rcar(vote.cv,vote.test) #While the lambd, value of lambda, is not specified, the programme uses the value of lambda corresponding the minimum mean cross-validated error.
+table(vote$Class.Name[-train], vote.pred)
+
+vote.pred<-predict.rcar(vote.cv,vote.test, lambd = 0) #] predicted value with lambda=0
+table(vote$Class.Name[-train], vote.pred)
 
 
 vote.racar<-rcar(vote.train, y.rank = 1, s=0.2, c=0.8,lambd=best.lambda)
 vote.pred<-predict.rcar(vote.racar,vote.test)
-
-Predicted classes of the test sample are calculated using "rcar" object coresponding to best.lambda.
-
 table(vote$Class.Name[-train], vote.pred)
 
 
